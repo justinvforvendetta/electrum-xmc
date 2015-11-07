@@ -392,7 +392,7 @@ def parse_scriptSig(d, bytes):
     d['x_pubkeys'] = x_pubkeys
     d['pubkeys'] = pubkeys
     d['redeemScript'] = redeemScript
-    d['address'] = hash_160_to_bc_address(hash_160(redeemScript.decode('hex')), 16)
+    d['address'] = hash_160_to_bc_address(hash_160(redeemScript.decode('hex')), 5)
 
 
 
@@ -415,7 +415,7 @@ def get_address_from_output_script(bytes):
     # p2sh
     match = [ opcodes.OP_HASH160, opcodes.OP_PUSHDATA4, opcodes.OP_EQUAL ]
     if match_decoded(decoded, match):
-        return 'address', hash_160_to_bc_address(decoded[1][1],16)
+        return 'address', hash_160_to_bc_address(decoded[1][1],5)
 
     return 'script', bytes
 
@@ -757,7 +757,7 @@ class Transaction:
                     secexp = pkey.secret
                     private_key = ecdsa.SigningKey.from_secret_exponent( secexp, curve = SECP256k1 )
                     public_key = private_key.get_verifying_key()
-                    sig = private_key.sign_digest_deterministic( for_sig, hashfunc=hashlib.sha256, sigencode = ecdsa.util.sigencode_der )
+                    sig = private_key.sign_digest_deterministic( for_sig, hashfunc=hashlib.sha256, sigencode = ecdsa.util.sigencode_der_canonize )
                     assert public_key.verify_digest( sig, for_sig, sigdecode = ecdsa.util.sigdecode_der)
                     txin['signatures'][ii] = sig.encode('hex')
                     self.inputs[i] = txin
