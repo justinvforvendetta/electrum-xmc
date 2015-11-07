@@ -39,7 +39,7 @@ setup(
     ],
     package_dir={
         'electrum_xmc': 'lib',
-        'electrum_xmc__gui': 'gui',
+        'electrum_xmc_gui': 'gui',
         'electrum_xmc_plugins': 'plugins',
     },
     packages=['electrum_xmc','electrum_xmc_gui','electrum_xmc_gui.qt','electrum_xmc_plugins'],
