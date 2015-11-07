@@ -1,0 +1,17 @@
+# If you want electrum-xmc to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum_xmc.desktop
+
+[Desktop Entry]
+Comment=Lightweight XMC Client
+Exec=electrum-xmc %u
+GenericName[en_US]=Electrum-XMC
+GenericName=Electrum-XM
+Icon=electrum_xmc
+Name[en_US]=Electrum XMC Wallet
+Name=Electrum XMC Wallet
+Categories=Network;
+StartupNotify=false
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/bitcoin;
+
